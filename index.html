@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+      integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+      crossorigin=""
+    />
+    <link rel="stylesheet" href="css/style.css" />
+
+    <title>Maps</title>
+  </head>
+  <body>
+    <main class="container">
+      <div class="app">
+        <!-- Leaflet Map -->
+        <div class="map" id="myMap"></div>
+
+        <!-- Markers Menu -->
+        <nav class="menu">
+          <div class="menu__header">
+            <h2 class="menu__title">Puntos</h2>
+            <button class="menu__button" id="add-marker">Nuevo</button>
+          </div>
+          <ul class="menu__list" id="places"></ul>
+        </nav>
+      </div>
+
+      <!-- Modal to add new marker -->
+      <div class="modal" id="modal">
+        <!-- Form -->
+        <form class="form" id="form">
+          <section class="form__header">
+            <h2 class="form__title">Añadir punto</h2>
+          </section>
+          <section class="form__data">
+            <div class="form__field">
+              <label for="name">Nombre</label>
+              <input type="text" name="name" id="name" />
+            </div>
+            <div class="form__field">
+              <label for="address">Dirección</label>
+              <input type="text" name="address" id="address" />
+            </div>
+            <div class="form__field">
+              <label for="phone">Teléfono</label>
+              <input type="text" name="phone" id="phone" />
+            </div>
+            <div class="form__field-coords">
+              <label for="lat">Latitud</label>
+              <input type="text" name="lat" id="lat" />
+              <label for="lng">Longitud</label>
+              <input type="text" name="lng" id="lng" />
+            </div>
+          </section>
+          <section class="form__buttons">
+            <button class="button__cancel">Cancelar</button>
+            <button class="button__save" type="submit">Guardar</button>
+          </section>
+          <section class="form__info">
+            <p>
+              Haz doble click en cualquier parte del mapa para obtener las
+              coordenadas.
+            </p>
+            <p>Todos los campos son obligatorios.</p>
+          </section>
+        </form>
+      </div>
+    </main>
+
+    <script
+      src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+      integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+      crossorigin=""
+    ></script>
+    <script src="js/map.js"></script>
+  </body>
+</html>
