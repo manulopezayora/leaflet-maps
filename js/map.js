@@ -99,7 +99,6 @@ const getData = () => {
 // Print markers and show popUps
 const printMarkers = () => {
   const data = getData()
-  // let dataMarker = []
 
   data === null ? (dataMarker = markers) : (dataMarker = data)
   dataMarker.map((mark, id) => {
@@ -139,7 +138,7 @@ const removeMarkers = (id) => {
     printMarkers()
   } else {
     data.splice(id, 1)
-    setMarkersToLocalStorage(dataMarker)
+    setMarkersToLocalStorage(data)
     printMarkers()
   }
 }
@@ -185,11 +184,10 @@ const setMarkersToLocalStorage = (dataMarker) => {
   localStorage.setItem('markers', JSON.stringify(dataMarker))
 }
 
-// const setMarkersAfterRemove = (dataMarker) => {
-//   localStorage.setItem('markers', JSON.stringify(dataMarker))
-// }
-
 const addNewMarker = (name, address, phone, lat, lng) => {
+  const data = getData()
+
+  data === null ? (dataMarker = markers) : (dataMarker = data)
   const newMarker = {
     name: name,
     address: address,
@@ -199,9 +197,8 @@ const addNewMarker = (name, address, phone, lat, lng) => {
       lng: lng,
     },
   }
-  markers.push(newMarker)
-  setMarkersToLocalStorage(markers)
-  return newMarker
+  dataMarker.push(newMarker)
+  setMarkersToLocalStorage(dataMarker)
 }
 
 // ! Events
