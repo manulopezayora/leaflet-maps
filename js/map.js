@@ -204,28 +204,31 @@ const addNewMarker = (name, address, phone, lat, lng) => {
   setMarkersToLocalStorage(dataMarker)
 }
 
+const toggleMenu = () => menu.classList.toggle('menu-active')
+const toggleMenuBars = () => iconBar.classList.toggle('menu__bar-active')
+const toggleModal = () => modal.classList.toggle('modal-active')
+
 // ! Events
 
 burgerMenu.addEventListener('click', () => {
-  iconBar.classList.toggle('menu__bar-active')
-  menu.classList.toggle('menu-active')
+  toggleMenuBars()
+  toggleMenu()
 })
 
-// const addMarkerButton = document.getElementById('add-marker')
-// const cancelButton = document.getElementById('cancel-button')
-
 addMarkerButton.addEventListener('click', () => {
-  modal.classList.add('modal-active')
+  toggleModal()
 })
 
 cancelButton.addEventListener('click', () => {
-  modal.classList.remove('modal-active')
+  toggleModal()
 })
 
 // Center marker and open popup to click on menu
 places.addEventListener('click', (e) => {
   const { name, address, phone, lat, lng } = e.target.dataset
   myMap.flyTo([lat, lng], 18)
+  toggleMenuBars()
+  toggleMenu()
 
   L.popup()
     .setLatLng([lat, lng])
@@ -256,6 +259,7 @@ form.addEventListener('submit', (e) => {
     addNewMarker(name.value, address.value, phone.value, lat.value, lng.value)
     printMarkers()
     form.reset()
+    toggleModal()
   }
 })
 

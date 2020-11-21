@@ -1,5 +1,6 @@
 :root {
   --dark-color: #212121;
+  --grey-color: #575757;
   --light-color: #f5f5f5;
   --bg_new-button: #0033ff;
   --bg_remove-button: #df1111;
@@ -95,6 +96,7 @@ body {
 }
 
 .menu {
+  padding-bottom: 20px;
   background-color: var(--light-color);
   width: 100%;
   position: absolute;
@@ -102,6 +104,7 @@ body {
   z-index: 20;
   transition: top 0.5s;
   overflow: scroll;
+  box-shadow: 0 8px 6px -6px black;
 }
 
 .menu-active {
@@ -111,15 +114,15 @@ body {
 .menu__header {
   margin: 0 auto;
   padding: 80px 20px 5px 20px;
-  width: 90%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 2px solid var(--dark-color);
+  border-bottom: 2px solid var(--grey-color);
 }
 
 .menu__title {
+  color: var(--grey-color);
   margin: 0;
 }
 
@@ -130,6 +133,7 @@ body {
   color: var(--light-color);
   background-color: var(--bg_new-button);
   font-weight: 900;
+  text-transform: uppercase;
 }
 
 .menu__list {
@@ -151,6 +155,7 @@ body {
   padding: 8px;
   color: var(--light-color);
   background-color: var(--bg_remove-button);
+  border-radius: 5px;
 }
 
 .modal {
@@ -164,6 +169,7 @@ body {
   background-color: rgba(0, 0, 0, 0.5);
   transform: scale(0);
   overflow: scroll;
+  transition: transform 0.2s;
 }
 
 .modal-active {
@@ -196,17 +202,13 @@ body {
   flex-direction: column;
 }
 
-.data__field-coords {
-  display: flex;
-  flex-direction: column;
-}
-
 .data__input {
   margin: 5px 0;
   padding: 5px;
   border: none;
   border-bottom: 2px solid var(--dark-color);
   background-color: inherit;
+  font-size: 1.2em;
 }
 
 .form__buttons {
@@ -235,4 +237,63 @@ body {
 
 .form__info {
   padding: 20px;
+}
+
+@media (min-width: 1200px) {
+  .app {
+    display: grid;
+    grid-template-columns: 1fr 500px;
+  }
+
+  .menu__icon {
+    display: none;
+  }
+
+  .menu {
+    height: 100vh;
+    top: 0;
+    position: relative;
+    box-shadow: 0 0 5px 0 black;
+  }
+
+  .menu__header {
+    padding: 10px 20px 5px 20px;
+  }
+
+  .menu__button,
+  .menu__list-item > p,
+  .menu__list-item > span {
+    cursor: pointer;
+  }
+
+  .modal {
+    transform: scaleY(0);
+    transition: transform 0.2s;
+  }
+
+  .modal-active {
+    transform: scaleY(1);
+  }
+
+  .form {
+    background-color: var(--light-color);
+    width: 60%;
+  }
+
+  .data__field {
+    margin-bottom: 20px;
+  }
+
+  .data__input {
+    font-size: 1.2em;
+  }
+
+  .form__button {
+    padding: 20px 30px;
+    cursor: pointer;
+  }
+
+  .form__info {
+    padding: 20px;
+  }
 }

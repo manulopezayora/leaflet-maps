@@ -58,15 +58,21 @@
               <label for="phone">Teléfono</label>
               <input class="data__input" type="text" name="phone" id="phone" />
             </div>
-            <div class="data__field-coords">
+            <div class="data__field">
               <label for="lat">Latitud</label>
               <input class="data__input" type="text" name="lat" id="lat" />
+            </div>
+            <div class="data__field">
               <label for="lng">Longitud</label>
               <input class="data__input" type="text" name="lng" id="lng" />
             </div>
           </section>
           <section class="form__buttons">
-            <button class="form__button button__cancel" id="cancel-button">
+            <button
+              class="form__button button__cancel"
+              id="cancel-button"
+              type="reset"
+            >
               Cancelar
             </button>
             <button class="form__button button__save" type="submit">
@@ -76,7 +82,7 @@
           <section class="form__info">
             <p>
               Haz doble click en cualquier parte del mapa para obtener las
-              coordenadas.
+              coordenadas o copia las de Google maps (URL).
             </p>
             <p>Todos los campos son obligatorios.</p>
           </section>
