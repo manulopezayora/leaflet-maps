@@ -21,7 +21,10 @@
         <div class="map" id="myMap"></div>
 
         <!-- Markers Menu -->
-        <nav class="menu">
+        <div class="menu__icon" id="burger-icon">
+          <div class="menu__bar" id="icon-bar"></div>
+        </div>
+        <nav class="menu" id="menu">
           <div class="menu__header">
             <h2 class="menu__title">Puntos</h2>
             <button class="menu__button" id="add-marker">Nuevo</button>
@@ -38,28 +41,37 @@
             <h2 class="form__title">Añadir punto</h2>
           </section>
           <section class="form__data">
-            <div class="form__field">
+            <div class="data__field">
               <label for="name">Nombre</label>
-              <input type="text" name="name" id="name" />
+              <input class="data__input" type="text" name="name" id="name" />
             </div>
-            <div class="form__field">
+            <div class="data__field">
               <label for="address">Dirección</label>
-              <input type="text" name="address" id="address" />
+              <input
+                class="data__input"
+                type="text"
+                name="address"
+                id="address"
+              />
             </div>
-            <div class="form__field">
+            <div class="data__field">
               <label for="phone">Teléfono</label>
-              <input type="text" name="phone" id="phone" />
+              <input class="data__input" type="text" name="phone" id="phone" />
             </div>
-            <div class="form__field-coords">
+            <div class="data__field-coords">
               <label for="lat">Latitud</label>
-              <input type="text" name="lat" id="lat" />
+              <input class="data__input" type="text" name="lat" id="lat" />
               <label for="lng">Longitud</label>
-              <input type="text" name="lng" id="lng" />
+              <input class="data__input" type="text" name="lng" id="lng" />
             </div>
           </section>
           <section class="form__buttons">
-            <button class="button__cancel">Cancelar</button>
-            <button class="button__save" type="submit">Guardar</button>
+            <button class="form__button button__cancel" id="cancel-button">
+              Cancelar
+            </button>
+            <button class="form__button button__save" type="submit">
+              Guardar
+            </button>
           </section>
           <section class="form__info">
             <p>

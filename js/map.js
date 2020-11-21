@@ -1,11 +1,15 @@
 // ! DOM
+const burgerMenu = document.getElementById('burger-icon')
+const iconBar = document.getElementById('icon-bar')
+const menu = document.getElementById('menu')
+const addMarkerButton = document.getElementById('add-marker')
+const cancelButton = document.getElementById('cancel-button')
 const places = document.getElementById('places')
 const addMarker = document.getElementById('add-marker')
 const modal = document.getElementById('modal')
 const form = document.getElementById('form')
 
 // ! Globals
-// const data = JSON.parse(localStorage.getItem('markers'))
 const formIsValid = {
   name: false,
   address: false,
@@ -13,7 +17,6 @@ const formIsValid = {
   lat: false,
   lng: false,
 }
-
 let dataMarker = []
 
 // Proveedor de plano
@@ -110,7 +113,7 @@ const printMarkers = () => {
     item.classList.add('menu__list-item')
     item.innerHTML = ` 
       <p data-id="${id}" data-name="${name}" data-address="${address}" data-phone="${phone}" data-lat="${lat}" data-lng="${lng}">${name}</p>
-      <span data-action="remove" data-id="${id}" data-name="${name}" data-address="${address}" data-phone="${phone}" data-lat="${lat}" data-lng="${lng}">Delete</span>
+      <span data-action="remove" data-id="${id}" data-name="${name}" data-address="${address}" data-phone="${phone}" data-lat="${lat}" data-lng="${lng}">Eliminar</span>
     `
     places.append(item)
 
@@ -143,12 +146,6 @@ const removeMarkers = (id) => {
   }
 }
 
-places.addEventListener('click', (e) => {
-  const { action, id } = e.target.dataset
-
-  if (action === 'remove') removeMarkers(id)
-})
-
 // Check Form Values
 const checkFormFields = (field) => {
   switch (field.name) {
@@ -180,6 +177,12 @@ const checkFormFields = (field) => {
   }
 }
 
+const checkLatLngIsFloat = (field) => {
+  let check = ''
+  field === latLngRegExp ? (check = true) : (check = false)
+  return check
+}
+
 const setMarkersToLocalStorage = (dataMarker) => {
   localStorage.setItem('markers', JSON.stringify(dataMarker))
 }
@@ -203,6 +206,22 @@ const addNewMarker = (name, address, phone, lat, lng) => {
 
 // ! Events
 
+burgerMenu.addEventListener('click', () => {
+  iconBar.classList.toggle('menu__bar-active')
+  menu.classList.toggle('menu-active')
+})
+
+// const addMarkerButton = document.getElementById('add-marker')
+// const cancelButton = document.getElementById('cancel-button')
+
+addMarkerButton.addEventListener('click', () => {
+  modal.classList.add('modal-active')
+})
+
+cancelButton.addEventListener('click', () => {
+  modal.classList.remove('modal-active')
+})
+
 // Center marker and open popup to click on menu
 places.addEventListener('click', (e) => {
   const { name, address, phone, lat, lng } = e.target.dataset
@@ -214,7 +233,7 @@ places.addEventListener('click', (e) => {
       `
           <h2>${name}</h2>
           <p><strong>Dirección</strong>: ${address} </p>
-          <p><strong>Teléfono</strong>: <a href="${phone}">${phone}</a> </p>
+          <p><strong>Teléfono</strong>: <a href="${phone}">${phone}</a></p>
         `
     )
     .openOn(myMap)
@@ -240,22 +259,16 @@ form.addEventListener('submit', (e) => {
   }
 })
 
+// Remove marker event
+places.addEventListener('click', (e) => {
+  const { action, id } = e.target.dataset
+
+  if (action === 'remove') removeMarkers(id)
+})
+
 // Render app
 window.addEventListener('load', () => {
-  // if (data === null) setMarkersToLocalStorage()
-  //setMarkersToLocalStorage()
   printMarkers()
 })
 
 myMap.on('dblclick', onMapDblClick)
-
-// Add Marker
-// myMap.on('dblclick', (e) => {
-//   let latLng = myMap.mouseEventToLatLng(e.originalEvent)
-//   L.marker([latLng.lat, latLng.lng]).addTo(myMap)
-// })
-
-// Al hacer click sale un alert
-// function onMapClick(e) {
-//   alert('You clicked the map at ' + e.latlng)
-// }
