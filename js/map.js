@@ -216,7 +216,6 @@ places.addEventListener('click', (e) => {
   myMap.flyTo([lat, lng], 18)
   toggleMenuBars()
   toggleMenu()
-
   L.popup()
     .setLatLng([lat, lng])
     .setContent(
