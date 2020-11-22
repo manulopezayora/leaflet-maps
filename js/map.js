@@ -206,9 +206,13 @@ burgerMenu.addEventListener('click', () => {
   toggleMenu()
 })
 
-addMarkerButton.addEventListener('click', toggleModal())
+addMarkerButton.addEventListener('click', () => {
+  toggleModal()
+})
 
-cancelButton.addEventListener('click', toggleModal())
+cancelButton.addEventListener('click', () => {
+  toggleModal()
+})
 
 // Center marker and open popup to click on menu
 places.addEventListener('click', (e) => {
