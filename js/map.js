@@ -84,6 +84,7 @@ const clickZoom = (e) => {
   myMap.setView(e.target.getLatLng())
 }
 
+// Show Latitude an Longitude when dobble click on the map
 const onMapDblClick = (e) => {
   const { lat, lng } = e.latlng
   // Remove zoom on dblclick
@@ -102,7 +103,6 @@ const getData = () => {
 // Print markers and show popUps
 const printMarkers = () => {
   const data = getData()
-
   data === null ? (dataMarker = markers) : (dataMarker = data)
   dataMarker.map((mark, id) => {
     const { name, address, phone } = mark
@@ -131,10 +131,8 @@ const printMarkers = () => {
   })
 }
 
-// Remove markers
 const removeMarkers = (id) => {
   const data = getData()
-
   if (data === null) {
     markers.splice(id, 1)
     setMarkersToLocalStorage(markers)
@@ -177,19 +175,12 @@ const checkFormFields = (field) => {
   }
 }
 
-const checkLatLngIsFloat = (field) => {
-  let check = ''
-  field === latLngRegExp ? (check = true) : (check = false)
-  return check
-}
-
 const setMarkersToLocalStorage = (dataMarker) => {
   localStorage.setItem('markers', JSON.stringify(dataMarker))
 }
 
 const addNewMarker = (name, address, phone, lat, lng) => {
   const data = getData()
-
   data === null ? (dataMarker = markers) : (dataMarker = data)
   const newMarker = {
     name: name,
@@ -215,13 +206,9 @@ burgerMenu.addEventListener('click', () => {
   toggleMenu()
 })
 
-addMarkerButton.addEventListener('click', () => {
-  toggleModal()
-})
+addMarkerButton.addEventListener('click', toggleModal())
 
-cancelButton.addEventListener('click', () => {
-  toggleModal()
-})
+cancelButton.addEventListener('click', toggleModal())
 
 // Center marker and open popup to click on menu
 places.addEventListener('click', (e) => {
